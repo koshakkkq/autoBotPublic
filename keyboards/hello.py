@@ -52,10 +52,16 @@ keyboardBack = InlineKeyboardMarkup(row_width=1).add(inline_btn_1)
 
 #оплата
 inline_btn_1 = InlineKeyboardButton('Картой 💳', pay=True)
+inline_btn_3 = InlineKeyboardButton('Бонусами', callback_data='bonus_pay')
 inline_btn_2 = InlineKeyboardButton('В меню ↩', callback_data='main_menu')
-keyboardPay = InlineKeyboardMarkup(row_width=1).add(inline_btn_1, inline_btn_2)
+keyboardPay = InlineKeyboardMarkup(row_width=1).add(inline_btn_1, inline_btn_3, inline_btn_2)
 
 #invoice
 inline_btn_1 = InlineKeyboardButton('Оплатить', pay=True)
 inline_btn_2 = InlineKeyboardButton('В меню ↩', callback_data='main_menu')
 keyboardInvoce = InlineKeyboardMarkup(row_width=1).add(inline_btn_1, inline_btn_2)
+
+
+#back_to_pay
+inline_btn_1 = InlineKeyboardButton('Назад', callback_data='pay')
+keyboardBonusPay = InlineKeyboardMarkup(row_width=1).add(inline_btn_1)

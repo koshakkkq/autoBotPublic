@@ -3,3 +3,5 @@ venv/
 elasticsearch-8.6.1/
 __pycache__/
 config.json
+log.txt
+server/

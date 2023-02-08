@@ -1,5 +1,4 @@
-def is_float(element: any) -> bool:
-    #If you expect None to be passed:
+def is_float(element):
     if element is None:
         return False
     try:

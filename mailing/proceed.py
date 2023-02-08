@@ -57,6 +57,8 @@ async def send_to_ended_vip():
         }}])
         for document in await cursor.to_list(length=100000):
             #todo раскоменить
+            if document['vipTill'] == 0:
+                continue
             was_mailed.insert_one({'id':document['id']})
             await messages_operations.add_msg(document['id'], 'vipEnd1')
     except Exception as e:

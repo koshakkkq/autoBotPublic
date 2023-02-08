@@ -6,9 +6,13 @@ from create import dp, db
 from utils import vip_status
 from mailing import proceed
 
+
+
 import asyncio
 
-logging.basicConfig(level=logging.ERROR, filename='log.txt', format='%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',datefmt='%Y-%m-%d:%H:%M:%S')
+logging.basicConfig(level=logging.ERROR,
+                    filename='log.txt',
+                    format='%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',datefmt='%Y-%m-%d:%H:%M:%S')
 
 
 

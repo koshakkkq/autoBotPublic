@@ -7,13 +7,14 @@ import time
 from datetime import datetime
 from bson.objectid import ObjectId
 from create import bot
-
+from utils.vip_status import  add_balance
 
 users = db.users
 cities = db.cities
 categories = db.categories
 partners = db.partners
 categories_tags = db.categories_tags
+withdrawal = db.withdrawal
 
 async def add_citie(name):
     try:
@@ -27,7 +28,6 @@ async def add_citie(name):
 async def add_category(city, name):
     try:
         res = await categories.insert_one({'name':name, 'city':city})
-        print(res.inserted_id)
         await categories_tags.insert_one({'name':name, 'city':city, 'categoryId':str(res.inserted_id), 'categoryName':name})
         return True
     except Exception as e:
@@ -96,3 +96,61 @@ async def mailing_admin(msg, vip):
         except Exception as e:
             logging.error(e)
             continue
+
+
+async def add_withdrawal(sum, id):
+    print(sum)
+    if sum < 100:
+        return False, 0
+    try:
+        res = await users.find_one({'id':id})
+        if res['balance'] < sum:
+            return False, 1
+        await withdrawal.insert_one(
+            {'sum': sum, 'id':id})
+        await users.update_one({'id':id},{'$inc':{'balance':-sum}})
+        return True, 0
+    except Exception as e:
+        logging.error(e)
+        return False, 2
+
+
+async def get_withdrawal_card():
+    try:
+        res = await withdrawal.find_one({})
+        return res, True
+    except Exception as e:
+        logging.error(e)
+        return None, False
+
+async def reload_withdrawal(id):
+    try:
+        res = await withdrawal.find_one({'id':id})
+        await withdrawal.delete_one({'id':id})
+        await withdrawal.insert_one({'id':id, 'sum':res['sum']})
+        return True
+    except Exception as e:
+        logging.error(e)
+        return None
+
+
+async def accept_withdrawal(withdrawalId):
+    try:
+        await withdrawal.delete_one({'_id': ObjectId(withdrawalId)})
+        return True
+    except Exception as e:
+        logging.error(e)
+        return None
+
+
+async def reject_withdrawal(withdrawalId):
+    try:
+        res = await withdrawal.find_one({'_id': ObjectId(withdrawalId)})
+        await withdrawal.delete_one({'_id': ObjectId(withdrawalId)})
+        balance_result = await add_balance(res['id'], res['sum'])
+        if balance_result == False:
+            return False
+        return True
+    except Exception as e:
+        logging.error(e)
+        return None

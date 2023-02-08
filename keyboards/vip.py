@@ -22,7 +22,8 @@ keyboardMenu = {False:keyboardMenu, True:admin.keyboardMenu}
 #аккаунт
 inline_btn_1 = InlineKeyboardButton('🟡Подробнее про реферальнкую систему🟡', callback_data='ref')
 inline_btn_2 = InlineKeyboardButton('Назад ↩', callback_data='back')
-keyboardAccount= InlineKeyboardMarkup(row_width=1).add(inline_btn_1, inline_btn_2)
+inline_btn_3 = InlineKeyboardButton('Вывести бонусы', callback_data='client_withdrawal_req')
+keyboardAccount= InlineKeyboardMarkup(row_width=1).add(inline_btn_1, inline_btn_3, inline_btn_2)
 #стра
 
 keyboardEmpty = InlineKeyboardMarkup()
@@ -192,5 +193,6 @@ async def get_category_by_search(cur_page, city, req, is_admin):
 
 
     return resKeyboard
+
 
 

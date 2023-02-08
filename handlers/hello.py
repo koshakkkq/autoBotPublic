@@ -1,5 +1,6 @@
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import types, Dispatcher
+from aiogram.utils.deep_linking import decode_payload
 from aiogram.types.message import ContentType
 from create import dp, bot
 from utils.account import was_in_bot
@@ -16,6 +17,7 @@ async def reload(message: types.Message, state):
                                caption=f'Добрый день {message.chat.first_name} 😌 \nДобро пожаловать в "<b>АВТО ТЕМА</b>" \n\nНиже есть интерактивное меню, которое ответит на все ваши вопросы 👇🏼',
                                reply_markup=keyboards.hello.keyboardHelloMenu, parse_mode=types.ParseMode.HTML)
     await state.finish()
+    await was_in_bot(message.chat.id)
     await state.set_state(mainState.state.state)
 
 
@@ -25,7 +27,9 @@ async def hello_handler(message: types.Message, state):
                                caption=f'Добрый день {message.chat.first_name} 😌 \nДобро пожаловать в "<b>АВТО ТЕМА</b>" \n\nНиже есть интерактивное меню, которое ответит на все ваши вопросы 👇🏼',
                                reply_markup=keyboards.hello.keyboardHelloMenu, parse_mode=types.ParseMode.HTML)
     await state.finish()
-    await was_in_bot(message.chat.id)
+    args = message.get_args()
+    payload = decode_payload(args)
+    await was_in_bot(message.chat.id, payload)
     await state.set_state(mainState.state.state)
 
 
@@ -36,6 +40,7 @@ async def back_to_menu_call(callback: types.CallbackQuery, state):
                                         reply_markup=keyboards.hello.keyboardMainMenu, parse_mode=types.ParseMode.HTML)
     await callback.answer()
     await state.finish()
+    await was_in_bot(callback.message.chat.id)
     await state.set_state(mainState.state.state)
 
 
@@ -45,6 +50,7 @@ async def back_to_menu_msg(message: types.Message, state):
                                caption=f'Добро пожаловать в главное меню "<b>АВТО ТЕМА</b>"\n\nНиже есть интерактивное меню, которое ответит на все ваши вопросы 👇🏼',
                                reply_markup=keyboards.hello.keyboardMainMenu, parse_mode=types.ParseMode.HTML)
     await state.finish()
+    await was_in_bot(message.chat.id)
     await state.set_state(mainState.state.state)
 
 
@@ -224,6 +230,7 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(hello_handler, state=None)
     dp.register_callback_query_handler(back_to_menu_call, state=None)
     dp.register_callback_query_handler(back_to_menu_call, state='*', text='main_menu')
+    dp.register_message_handler(hello_handler, state='*', commands=['start'])
 
 
     # calculator

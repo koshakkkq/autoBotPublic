@@ -2,11 +2,14 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import types, Dispatcher
 
 import utils.category
-from create import dp
+from create import dp, bot
 from handlers.hello import mainState, back_to_menu_call
 from utils import vip_status
 from create import adminId
 from utils import admin
+from utils.checkers import is_float
+
+
 import keyboards
 
 #todo нормальная возврат на туже страницу
@@ -619,6 +622,43 @@ async def more_about_ref(callback: types.CallbackQuery, state):
     await state.set_state(vipMenu.moreAboutRef.state)
 
 
+class withdrawal_client(StatesGroup):
+    get_sum = State()
+
+
+async def withdrawal_client_call(callback: types.CallbackQuery, state):
+    is_vip = await vip_status.is_vip(callback.message.chat.id)
+    if is_vip == False:
+        await isNotVip(callback, state)
+        return
+    await callback.message.answer(text='Введите сумму для вывода, минимальная сумма для вывода 100 руб.', reply_markup=keyboards.admin.keyboardBack)
+    await state.set_state(withdrawal_client.get_sum.state)
+
+
+async def withdrawal_get_sum(message: types.Message, state):
+    is_vip = await vip_status.is_vip(message.chat.id)
+    if is_vip == False:
+        await isNotVipMsg(message, state)
+        return
+
+    sum = is_float(message.text)
+    if sum == False:
+        await message.answer(text='Ошибка, проверьте правльно ли введена сумма',
+                                      reply_markup=keyboards.admin.keyboardBack)
+    else:
+        res = await admin.add_withdrawal(float(message.text), message.chat.id)
+        if res[0] == False:
+            if res[1] == 0:
+                await message.answer(text='Введена сумма меньше 100',
+                                     reply_markup=keyboards.admin.keyboardBack)
+            elif res[1] == 1:
+                await message.answer(text='Недостаточно средств на балансе',
+                                     reply_markup=keyboards.admin.keyboardBack)
+            else:
+                await message.answer(text='Ошибка',
+                                     reply_markup=keyboards.admin.keyboardBack)
+        else:
+            await message.answer(text='Успепшно, ожидайте с вами свяжется администратор',  reply_markup=keyboards.admin.keyboardBack)
 
 #search
 class MailingAdmin(StatesGroup):
@@ -643,6 +683,58 @@ async def mailing_text(message: types.Message, state):
     user_data = await state.get_data()
     await message.answer('Рассылка началась', reply_markup=keyboards.admin.keyboardBack)
     await admin.mailing_admin(text, user_data['mailingToVip'])
+
+
+
+class withdrawal_admin(StatesGroup):
+    inWithDrawal = State()
+async def withdrawal_admin_call(callback: types.CallbackQuery, state):
+    if callback.message.chat.id != adminId:
+        return
+    await get_withdrawal_card(callback.message)
+    await callback.answer()
+    await state.set_state(withdrawal_admin.inWithDrawal)
+
+async def get_withdrawal_card(message: types.Message):
+    res = await admin.get_withdrawal_card()
+    if res[1] == False:
+        await message.answer('Ошибка', reply_markup=keyboards.admin.keyboardBack)
+        await admin.reload_withdrawal(message.chat.id)
+        return
+    else:
+        if res[0] == None:
+            await message.answer('Больше нет заявок', reply_markup=keyboards.admin.keyboardBack)
+            return
+        res = res[0]
+        user_name = await bot.get_chat(res['id'])
+        user_name = user_name.first_name
+        keyboard_res = await keyboards.admin.get_withdrawal_keyboard(str(res['_id']), res['id'])
+        await message.answer(f'Запрос на вывод от {user_name}\nНа сумму: {res["sum"]}', reply_markup=keyboard_res)
+
+async def accept_withdrawal(callback: types.CallbackQuery):
+    if callback.message.chat.id != adminId:
+        return
+    id = callback.data.split('_')[1]
+    res = await utils.admin.accept_withdrawal(id)
+    if res == True:
+        await callback.message.answer('Успешно', reply_markup=keyboards.admin.keyboardBack)
+    else:
+        await callback.message.answer('Ошибка', reply_markup=keyboards.admin.keyboardBack)
+    await get_withdrawal_card(callback.message)
+    await callback.answer()
+
+
+async def reject_withdrawal(callback: types.CallbackQuery):
+    if callback.message.chat.id != adminId:
+        return
+    id = callback.data.split('_')[1]
+    res = await utils.admin.reject_withdrawal(id)
+    if res == True:
+        await callback.message.answer('Успешно', reply_markup=keyboards.admin.keyboardBack)
+    else:
+        await callback.message.answer('Ошибка', reply_markup=keyboards.admin.keyboardBack)
+    await get_withdrawal_card(callback.message)
+    await callback.answer()
 
 
 def register_handlers_client(dp: Dispatcher):
@@ -718,6 +810,12 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_callback_query_handler(vip_menu, state=vipMenu.account, text_startswith='back')
     dp.register_callback_query_handler(get_account, state=vipMenu.moreAboutRef, text_startswith='back')
     dp.register_callback_query_handler(more_about_ref, state=vipMenu.account,  text_startswith='ref')
+    dp.register_callback_query_handler(withdrawal_client_call, state=vipMenu.account,  text_startswith='client_withdrawal_req')
+    dp.register_message_handler(withdrawal_get_sum, state=withdrawal_client.get_sum)
+    dp.register_callback_query_handler(get_account, state=withdrawal_client.get_sum)
+
+
+
 
     #partner_serach
     dp.register_callback_query_handler(partner_search_city_pick, state=isVipState.inVipMenu, text_startswith='search_partners')
@@ -731,6 +829,15 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_callback_query_handler(vip_menu, state=searching.state1,text_startswith='back' )
     dp.register_callback_query_handler(pick_category, state=searching.state1, text_startswith='category_pick')
 
+
+    #mailing
     dp.register_callback_query_handler(mailing_admin, state=isVipState.inVipMenu, text_startswith='send_to')
     dp.register_message_handler(mailing_text, state=MailingAdmin.addText)
     dp.register_callback_query_handler(vip_menu,  state=MailingAdmin.addText)
+
+    #admin withdrawal
+    dp.register_callback_query_handler(withdrawal_admin_call, state= isVipState.inVipMenu, text='withdrawal_req')
+    dp.register_callback_query_handler(vip_menu, state=withdrawal_admin.inWithDrawal, text='back')
+    dp.register_callback_query_handler(accept_withdrawal, state=withdrawal_admin.inWithDrawal, text_startswith='accept_')
+    dp.register_callback_query_handler(reject_withdrawal, state=withdrawal_admin.inWithDrawal,
+                                       text_startswith='reject_')

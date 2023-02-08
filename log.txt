@@ -1,0 +1,159 @@
+2023-02-06:01:44:42,079 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-06:01:44:52,272 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-06:01:45:02,399 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-06:01:45:12,516 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-06:01:45:22,634 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-06:01:45:32,766 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-06:01:45:42,883 ERROR    [dispatcher.py:390] Cause exception while getting updates.
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\bot\api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2023-02-07:16:52:55,258 ERROR    [base_events.py:1729] Task exception was never retrieved
+future: <Task finished name='Task-11' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=UnicodeDecodeError('utf-8', b'\x91\xe9', 0, 1, 'invalid start byte')>
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\koshakqqq\Documents\auto_bot\handlers\hello.py", line 33, in hello_handler
+    payload = decode_payload(args)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\deep_linking.py", line 132, in decode_payload
+    return result.decode()
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x91 in position 0: invalid start byte
+2023-02-07:16:53:13,006 ERROR    [base_events.py:1729] Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=UnicodeDecodeError('utf-8', b'\x91\xe9', 0, 1, 'invalid start byte')>
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\koshakqqq\Documents\auto_bot\handlers\hello.py", line 33, in hello_handler
+    payload = decode_payload(args)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\deep_linking.py", line 132, in decode_payload
+    return result.decode()
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x91 in position 0: invalid start byte
+2023-02-07:16:53:39,240 ERROR    [base_events.py:1729] Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=UnicodeDecodeError('utf-8', b'\x91\xe9', 0, 1, 'invalid start byte')>
+Traceback (most recent call last):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "C:\Users\koshakqqq\Documents\auto_bot\handlers\hello.py", line 34, in hello_handler
+    payload = decode_payload(args)
+  File "C:\Users\koshakqqq\AppData\Roaming\Python\Python310\site-packages\aiogram\utils\deep_linking.py", line 132, in decode_payload
+    return result.decode()
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x91 in position 0: invalid start byte

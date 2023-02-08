@@ -30,6 +30,16 @@ async def process_pre_checkout_query(pre_checkout_query: types.PreCheckoutQuery)
     await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
 
 
+async def bonus_pay(callback: types.CallbackQuery, state):
+    res = await vip_status.pay_by_bonuses(callback.message.chat.id, callback.message.chat.first_name)
+    if res[0] == False:
+        await callback.message.answer(f'У вас недостаточно бонусов нужно 500, а у вас {res[1]}',reply_markup=keyboards.hello.keyboardBonusPay)
+    else:
+        await callback.message.answer(
+            text='Поздравляю!🥳🥳🥳\n\n🔗 Ссылка на канал: *ссылка*\n\nВведите команду /auto, чтобы открыть дополнительное меню со всеми возможностями в боте.')
+    await callback.answer()
+
+
 async def process_successful_payment(message: types.Message):
     res = await vip_status.set_vip(message.chat.id, 30, message.chat.first_name)
     if res == False:
@@ -46,3 +56,4 @@ def register_handlers_client(dp: Dispatcher):
     # оплатка
     dp.register_pre_checkout_query_handler(process_pre_checkout_query, lambda query: True, state='*')
     dp.register_message_handler(process_successful_payment, state='*', content_types=ContentType.SUCCESSFUL_PAYMENT)
+    dp.register_callback_query_handler(bonus_pay, state='*', text='bonus_pay')
